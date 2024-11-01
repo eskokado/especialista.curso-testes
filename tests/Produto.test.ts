@@ -1,7 +1,24 @@
+import { ProdutoBuilder } from "./utils/ProdutoBuilder";
+
 describe("Classe Produto", ()=>{
     describe("Ao criar um produto", ()=>{
-        test.todo("Deve criar um produto vÃ¡lido com todas as propriedades e desconto fixo")
-        test.todo("Deve criar um produto vÃ¡lido com todas as propriedades e desconto percentual")
+        const nome = "Produto teste"
+        const precoOriginal = 100
+        const estoque = 5
+        test("Deve criar um produto vÃ¡lido com todas as propriedades e desconto fixo", () => {
+            const desconto = 10
+            const p = new ProdutoBuilder()
+                .comNome(nome)
+                .comEstoque(estoque)
+                .comDesconto(desconto)
+                .comPrecoOriginal(precoOriginal)
+                .build()
+            expect(p).toBeDefined()
+            expect(p).toMatchObject({nome, estoque, precoOriginal, desconto, precoAtual: precoOriginal - desconto})
+        })
+
+
+
         test.todo("Deve criar um produto vÃ¡lido sem desconto")
         test.todo("Deve lanÃ§ar um erro ao tentar criar produto sem nome")
         test.todo("Deve lanÃ§ar um erro ao tentar criar produto com nome menor que 3")
