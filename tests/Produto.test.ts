@@ -29,7 +29,16 @@ describe("Classe Produto", ()=>{
             expect(p).toMatchObject({nome, estoque, precoOriginal, desconto, precoAtual: precoOriginal * (1 - desconto)})
         })
 
-        test.todo("Deve criar um produto vÃ¡lido sem desconto")
+        test("Deve criar um produto válido sem desconto", () => {
+            const p = new ProdutoBuilder()
+                .comNome(nome)
+                .comEstoque(estoque)
+                .comPrecoOriginal(precoOriginal)
+                .build()
+            expect(p).toBeDefined()
+            expect(p).toMatchObject({nome, estoque, precoOriginal, precoAtual: precoOriginal})
+        })
+
         test.todo("Deve lanÃ§ar um erro ao tentar criar produto sem nome")
         test.todo("Deve lanÃ§ar um erro ao tentar criar produto com nome menor que 3")
         test.todo("Deve lanÃ§ar um erro ao tentar criar produto sem preÃ§o")
