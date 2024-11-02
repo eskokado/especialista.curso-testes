@@ -65,7 +65,15 @@ describe("Classe Produto", ()=>{
 
             expect(p).toThrow("O preço não pode ser vazio")
         })
-        test.todo("Deve lançar um erro ao tentar criar produto sem estoque")
+        test("Deve lançar um erro ao tentar criar produto sem estoque", () => {
+            const p = () => new ProdutoBuilder()
+                .comNome(nome)
+                .comPrecoOriginal(precoOriginal)
+                .build()
+
+            expect(p).toThrow("O estoque não pode ser vazio")
+        })
+
         test.todo("Deve lançar um erro ao tentar criar produto com estoque negativo")
         test.todo("Deve lançar um erro ao tentar criar produto com estoque 0")
         test.todo("Deve lançar um erro ao tentar criar produto com precoOriginal negativo")
