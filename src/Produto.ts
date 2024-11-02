@@ -13,8 +13,12 @@ export class Produto {
             throw new Error("Nome deve ter no mínimo 3 caracteres");
         }
 
+        if (!precoOriginal) {
+            throw new Error("O preço não pode ser vazio");
+        }
+
         if (precoOriginal <= 0) {
-            throw new Error("PreÃ§o deve ser positivo");
+            throw new Error("Preço deve ser positivo");
         }
 
         if (estoque <= 0) {
