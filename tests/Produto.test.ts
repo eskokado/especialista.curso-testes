@@ -84,7 +84,16 @@ describe("Classe Produto", ()=>{
             expect(p).toThrow("Estoque deve ser positivo")
         })
 
-        test.todo("Deve lançar um erro ao tentar criar produto com estoque 0")
+        test("Deve lançar um erro ao tentar criar produto com estoque 0", () => {
+            const p = () => new ProdutoBuilder()
+                .comNome(nome)
+                .comPrecoOriginal(precoOriginal)
+                .comEstoque(0)
+                .build()
+
+            expect(p).toThrow("Estoque deve ser positivo")
+        })
+
         test.todo("Deve lançar um erro ao tentar criar produto com precoOriginal negativo")
         test.todo("Deve lançar um erro ao tentar criar produto com preço 0")
         test.todo("Deve lançar um erro ao tentar criar produto com desconto negativo")
