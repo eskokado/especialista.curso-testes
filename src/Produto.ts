@@ -13,7 +13,7 @@ export class Produto {
             throw new Error("Nome deve ter no mínimo 3 caracteres");
         }
 
-        if (!precoOriginal) {
+        if (!precoOriginal && precoOriginal !== 0) {
             throw new Error("O preço não pode ser vazio");
         }
 
