@@ -21,6 +21,9 @@ export class Produto {
             throw new Error("Preço deve ser positivo");
         }
 
+        if (!estoque) {
+            throw new Error("O estoque não pode ser vazio");
+        }
         if (estoque <= 0) {
             throw new Error("Estoque deve ser positivo");
         }
