@@ -29,17 +29,18 @@ export class Produto {
             throw new Error("Estoque deve ser positivo");
         }
 
-        if (_desconto !== undefined &&_desconto <= 0) {
-            throw new Error("Desconto deve ser positivo");
-        }
-
         this.precoAtual = this.aplicarDesconto(precoOriginal, _desconto);
     }
 
     aplicarDesconto(preco: number, desconto: number | undefined): number {
+        if (desconto !== undefined && desconto <= 0) {
+            throw new Error("Desconto deve ser positivo");
+        }
+
         if (desconto !== 0 && !desconto) {
             return preco;
         }
+
         if (desconto > 0 && desconto < 1) { //0.8 = 80%, 80 = - R$80
             return preco * (1 - desconto);
         } else {
