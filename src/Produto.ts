@@ -29,6 +29,10 @@ export class Produto {
             throw new Error("Estoque deve ser positivo");
         }
 
+        if (_desconto && _desconto <= 0) {
+            throw new Error("Desconto deve ser positivo");
+        }
+
         this.precoAtual = this.aplicarDesconto(precoOriginal, _desconto);
     }
 
