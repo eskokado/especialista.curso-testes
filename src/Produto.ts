@@ -6,8 +6,11 @@ export class Produto {
         public estoque: number,
         private _desconto?: number | undefined
     ) {
+        if (!nome) {
+            throw new Error("Nome não pode ser vazio");
+        }
         if (nome.length < 3) {
-            throw new Error("Nome deve ter no mÃ­nimo 3 caracteres");
+            throw new Error("Nome deve ter no mínimo 3 caracteres");
         }
 
         if (precoOriginal <= 0) {
