@@ -29,7 +29,7 @@ export class Produto {
             throw new Error("Estoque deve ser positivo");
         }
 
-        if (_desconto && _desconto <= 0) {
+        if (_desconto !== undefined &&_desconto <= 0) {
             throw new Error("Desconto deve ser positivo");
         }
 
