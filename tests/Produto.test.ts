@@ -48,7 +48,15 @@ describe("Classe Produto", ()=>{
             expect(p).toThrow("Nome não pode ser vazio")
         })
 
-        test.todo("Deve lançar um erro ao tentar criar produto com nome menor que 3")
+        test("Deve lançar um erro ao tentar criar produto com nome menor que 3", () => {
+            const p = () => new ProdutoBuilder()
+                .comNome('ab')
+                .comEstoque(estoque)
+                .comPrecoOriginal(precoOriginal)
+                .build()
+
+            expect(p).toThrow("Nome deve ter no mínimo 3 caracteres")
+        })
         test.todo("Deve lançar um erro ao tentar criar produto sem preço")
         test.todo("Deve lançar um erro ao tentar criar produto sem estoque")
         test.todo("Deve lançar um erro ao tentar criar produto com estoque negativo")
