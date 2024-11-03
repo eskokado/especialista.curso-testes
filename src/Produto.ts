@@ -49,6 +49,7 @@ export class Produto {
     }
 
     set desconto(novoDesconto: number) {
+        this._desconto = novoDesconto
         this.precoAtual = this.aplicarDesconto(this.precoOriginal, novoDesconto);
     }
 
