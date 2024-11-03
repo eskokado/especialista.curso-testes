@@ -150,7 +150,19 @@ describe("Classe Produto", ()=>{
             expect(p.precoOriginal).toBe(precoOriginal)
             expect(p.precoAtual).toBe(precoOriginal - desconto)
         })
-        test.todo("Deve aplicar o desconto percentual corretamente")
+        test("Deve aplicar o desconto percentual corretamente", () => {
+            const p = new ProdutoBuilder()
+                .padrao()
+                .comPrecoOriginal(precoOriginal)
+                .comEstoque(5)
+                .build()
+
+            const desconto = 0.5
+            p.desconto = desconto
+
+            expect(p.precoOriginal).toBe(precoOriginal)
+            expect(p.precoAtual).toBe(precoOriginal * (1 - desconto))
+        })
         test.todo("Deve lançar um erro ao tentar alterar o valor para negativo")
         test.todo("Deve lançar um erro ao tentar alterar o valor para 0")
     });
