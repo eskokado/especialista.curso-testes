@@ -1,10 +1,11 @@
 import { ProdutoBuilder } from "./utils/ProdutoBuilder";
 
 describe("Classe Produto", ()=>{
+    const nome = "Produto teste"
+    const precoOriginal = 100
+    const estoque = 5
+
     describe("Ao criar um produto", ()=>{
-        const nome = "Produto teste"
-        const precoOriginal = 100
-        const estoque = 5
         test("Deve criar um produto válido com todas as propriedades e desconto fixo", () => {
             const desconto = 10
             const p = new ProdutoBuilder()
@@ -136,7 +137,19 @@ describe("Classe Produto", ()=>{
     });
 
     describe("Ao mudar o desconto", ()=>{
-        test.todo("Deve aplicar o desconto fixo corretamente")
+        test("Deve aplicar o desconto fixo corretamente", () => {
+            const p = new ProdutoBuilder()
+                .padrao()
+                .comPrecoOriginal(precoOriginal)
+                .comEstoque(10)
+                .build()
+
+            const desconto = 10
+            p.desconto = desconto
+
+            expect(p.precoOriginal).toBe(precoOriginal)
+            expect(p.precoAtual).toBe(precoOriginal - desconto)
+        })
         test.todo("Deve aplicar o desconto percentual corretamente")
         test.todo("Deve lançar um erro ao tentar alterar o valor para negativo")
         test.todo("Deve lançar um erro ao tentar alterar o valor para 0")
