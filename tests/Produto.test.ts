@@ -149,6 +149,7 @@ describe("Classe Produto", ()=>{
 
             expect(p.precoOriginal).toBe(precoOriginal)
             expect(p.precoAtual).toBe(precoOriginal - desconto)
+            expect(p.desconto).toBe(desconto)
         })
         test("Deve aplicar o desconto percentual corretamente", () => {
             const p = new ProdutoBuilder()
@@ -162,8 +163,18 @@ describe("Classe Produto", ()=>{
 
             expect(p.precoOriginal).toBe(precoOriginal)
             expect(p.precoAtual).toBe(precoOriginal * (1 - desconto))
+            expect(p.desconto).toBe(desconto)
         })
-        test.todo("Deve lançar um erro ao tentar alterar o valor para negativo")
+        test("Deve lançar um erro ao tentar alterar o valor para negativo", () => {
+            const p = new ProdutoBuilder()
+                .comNome(nome)
+                .comPrecoOriginal(precoOriginal)
+                .comEstoque(estoque)
+                .build()
+            const alteracao = () => p.desconto = -3
+
+            expect(alteracao).toThrow("Desconto deve ser positivo")
+        })
         test.todo("Deve lançar um erro ao tentar alterar o valor para 0")
     });
 
