@@ -1,4 +1,5 @@
 import { ProdutoBuilder } from "./utils/ProdutoBuilder";
+import {Produto} from "../src/Produto";
 
 describe("Classe Produto", ()=>{
     const nome = "Produto teste"
@@ -188,7 +189,15 @@ describe("Classe Produto", ()=>{
     });
 
     describe("Ao reduzir o estoque", ()=>{
-        test.todo("Deve reduzir o estoque corretamente")
+        const estoque = 5
+        test("Deve reduzir o estoque corretamente", () => {
+            const tirar = 2
+            const p = new ProdutoBuilder().padrao().comEstoque(estoque).build()
+            p.reduzirEstoque(tirar)
+
+            expect(p.estoque).toBe(estoque-tirar)
+        })
+
         test.todo("Deve lançar um erro ao tentar retirar mais do que o estoque tem")
         test.todo("Deve permitir a retirada da mesma quantidade de itens presente no estoque")
         test.todo("Deve lançar um erro ao tentar retirar um valor negativo")
