@@ -198,7 +198,13 @@ describe("Classe Produto", ()=>{
             expect(p.estoque).toBe(estoque-tirar)
         })
 
-        test.todo("Deve lançar um erro ao tentar retirar mais do que o estoque tem")
+        test("Deve lançar um erro ao tentar retirar mais do que o estoque tem", () => {
+            const tirar = 6
+            const p = new ProdutoBuilder().padrao().comEstoque(estoque).build()
+            const result = () => p.reduzirEstoque(tirar)
+
+            expect(result).toThrow("Estoque insuficiente")
+        })
         test.todo("Deve permitir a retirada da mesma quantidade de itens presente no estoque")
         test.todo("Deve lançar um erro ao tentar retirar um valor negativo")
     });
