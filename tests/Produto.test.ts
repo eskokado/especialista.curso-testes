@@ -212,7 +212,13 @@ describe("Classe Produto", ()=>{
 
             expect(p.estoque).toBe(estoque-tirar)
         })
-        test.todo("Deve lançar um erro ao tentar retirar um valor negativo")
+        test("Deve lançar um erro ao tentar retirar um valor negativo", () => {
+            const tirar = -2
+            const p = new ProdutoBuilder().padrao().comEstoque(estoque).build()
+            const result = () => p.reduzirEstoque(tirar)
+
+            expect(result).toThrow("Quantidade deve ser maior que zero")
+        })
     });
 
     describe("Ao aumentar o estoque", ()=>{

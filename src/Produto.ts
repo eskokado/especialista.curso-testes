@@ -58,6 +58,9 @@ export class Produto {
     }
 
     reduzirEstoque(quantidade: number): void {
+        if (quantidade <= 0) {
+            throw new Error("Quantidade deve ser maior que zero");
+        }
         if (quantidade > this.estoque) {
             throw new Error("Estoque insuficiente");
         }
