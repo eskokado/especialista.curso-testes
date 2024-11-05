@@ -81,7 +81,7 @@ export class Produto {
             : zero;
         const textoBase = `Produto: ${
             this.nome ?? "Produto Teste"
-        }, PreÃ§o: R$${precoAtualFormatado}`;
+        }, Preço: R$${precoAtualFormatado}`;
         if (this._desconto) {
             let textoDesconto = "";
             if (this._desconto > 1) {
@@ -90,7 +90,7 @@ export class Produto {
                 // @ts-ignore
                 textoDesconto = `Desconto: ${this._desconto * 100 ?? 0}%`;
             }
-            return `${textoBase}, ${textoDesconto}, PreÃ§o Original: R$${this.precoOriginal.toFixed(
+            return `${textoBase}, ${textoDesconto}, Preço Original: R$${this.precoOriginal.toFixed(
                 2
             )}`;
         }

@@ -240,10 +240,18 @@ describe("Classe Produto", ()=>{
         })
     });
 
-    describe("Ao obter a descriçÃ£o", ()=>{
-        test.todo("Deve retornar a descriçÃ£o de um produto com desconto fixo")
-        test.todo("Deve retornar a descriçÃ£o de um produto com desconto percentual")
-        test.todo("Deve retornar a descriçÃ£o de um produto sem desconto")
+    describe("Ao obter a descrição", ()=>{
+        test("Deve retornar a descrição de um produto com desconto fixo", () => {
+            const p = new ProdutoBuilder()
+                .padrao()
+                .comEstoque(10)
+                .build()
 
+            const desconto = 10
+            p.desconto = desconto
+            expect(p.getDescricao()).toBe("Produto: Produto teste, Preço: R$90.00, Desconto: R$10.00, Preço Original: R$100.00")
+        })
+        test.todo("Deve retornar a descrição de um produto com desconto percentual")
+        test.todo("Deve retornar a descrição de um produto sem desconto")
     });
 });
