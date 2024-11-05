@@ -68,6 +68,9 @@ export class Produto {
     }
 
     aumentarEstoque(quantidade: number): void {
+        if (quantidade <= 0) {
+            throw new Error("Quantidade deve ser maior que zero");
+        }
         this.estoque += quantidade;
     }
 

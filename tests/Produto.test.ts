@@ -231,7 +231,13 @@ describe("Classe Produto", ()=>{
             expect(p.estoque).toBe(estoque+entrada)
 
         })
-        test.todo("Deve lançar um erro ao tentar adicionar um valor negativo")
+        test("Deve lançar um erro ao tentar adicionar um valor negativo", () => {
+            const entrada = -2
+            const p = new ProdutoBuilder().padrao().comEstoque(estoque).build()
+            const result = () => p.aumentarEstoque(entrada)
+
+            expect(result).toThrow("Quantidade deve ser maior que zero")
+        })
     });
 
     describe("Ao obter a descriçÃ£o", ()=>{
