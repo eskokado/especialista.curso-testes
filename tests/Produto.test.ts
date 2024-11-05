@@ -222,7 +222,15 @@ describe("Classe Produto", ()=>{
     });
 
     describe("Ao aumentar o estoque", ()=>{
-        test.todo("Deve aumentar o estoque corretamente")
+        const estoque = 5
+        test("Deve aumentar o estoque corretamente", () => {
+            const entrada = 2
+            const p = new ProdutoBuilder().padrao().comEstoque(estoque).build()
+            p.aumentarEstoque(entrada)
+
+            expect(p.estoque).toBe(estoque+entrada)
+
+        })
         test.todo("Deve lançar um erro ao tentar adicionar um valor negativo")
     });
 
