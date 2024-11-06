@@ -33,8 +33,25 @@ describe("Classe Pedido", ()=>{
             expect(criacao).toThrow(`Estoque insuficiente para ${produto.nome}`)
         })
 
-        test.todo("Deve reduzir o estoque do pedido")
-        test.todo("Deve lanÃ§ar um erro ao tentar adicionar produto em um pedido finalizado")
+        test("Deve reduzir o estoque do pedido", () => {
+            const produto = new ProdutoBuilder().padrao().comEstoque(estoque).build()
+            const pedido = new Pedido(id)
+            const quantidade = 5
+            pedido.adicionarProduto(produto, quantidade)
+
+            expect(produto.estoque).toBe(5)
+        })
+
+        test("Deve lançar um erro ao tentar adicionar produto em um pedido finalizado", () => {
+            const produto = new ProdutoBuilder().padrao().comEstoque(estoque).build()
+            const pedido = new Pedido(id)
+            const quantidade = 5
+            pedido.finalizarPedido()
+            const criação = () => pedido.adicionarProduto(produto, quantidade)
+
+            expect(criação).toThrow('Pedido já finalizado!')
+
+        })
     });
 
     describe("Ao deletar produtos do pedido",()=>{

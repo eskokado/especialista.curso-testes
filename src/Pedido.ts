@@ -9,6 +9,7 @@ export class Pedido {
     }
 
     adicionarProduto(produto: Produto, quantidade: number): void {
+        if (this.finalizado) throw new Error('Pedido já finalizado!')
         try {
             produto.reduzirEstoque(quantidade);
         } catch (error) {
