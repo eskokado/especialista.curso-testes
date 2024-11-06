@@ -1,6 +1,12 @@
+import {Pedido} from "../src/Pedido";
+
 describe("Classe Pedido", ()=>{
+    const id = 1
     describe("Ao criar pedido",()=>{
-        test.todo("Deve criar um pedido vÃ¡lido")
+        test("Deve criar um pedido válido", () => {
+            const pedido = new Pedido(id)
+            expect(pedido).toMatchObject({id, finalizado: false, produtos: []})
+        })
         test.todo("NÃ£o deve criar um pedido com id negativo")
     });
     describe("Ao adicionar produtos ao pedido",()=>{
