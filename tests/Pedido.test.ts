@@ -24,7 +24,15 @@ describe("Classe Pedido", ()=>{
             expect(pedido.produtos).toEqual([{produto, quantidade}])
         })
 
-        test.todo("Deve lanÃ§ar um erro ao adicionar um produto com estoque insuficiente")
+        test("Deve lançar um erro ao adicionar um produto com estoque insuficiente", () => {
+            const produto = new ProdutoBuilder().padrao().comEstoque(estoque).build()
+            const pedido = new Pedido(id)
+            const quantidade = 15
+            const criacao = () => pedido.adicionarProduto(produto, quantidade)
+
+            expect(criacao).toThrow(`Estoque insuficiente para ${produto.nome}`)
+        })
+
         test.todo("Deve reduzir o estoque do pedido")
         test.todo("Deve lanÃ§ar um erro ao tentar adicionar produto em um pedido finalizado")
     });
