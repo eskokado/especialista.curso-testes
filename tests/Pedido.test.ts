@@ -7,7 +7,10 @@ describe("Classe Pedido", ()=>{
             const pedido = new Pedido(id)
             expect(pedido).toMatchObject({id, finalizado: false, produtos: []})
         })
-        test.todo("NÃ£o deve criar um pedido com id negativo")
+        test("Não deve criar um pedido com id negativo", () => {
+            const criacao = () => new Pedido(-200)
+            expect(criacao).toThrow("O id deve ser maior que 0");
+        })
     });
     describe("Ao adicionar produtos ao pedido",()=>{
         test.todo("Deve adicionar um produto vÃ¡lido ao pedido")

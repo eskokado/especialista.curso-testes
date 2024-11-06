@@ -4,7 +4,9 @@ export class Pedido {
     public produtos: { produto: Produto; quantidade: number }[] = [];
     public finalizado: boolean = false;
 
-    constructor(public id: number) {}
+    constructor(public id: number) {
+        if (id <= 0) throw new Error("O id deve ser maior que 0")
+    }
 
     adicionarProduto(produto: Produto, quantidade: number): void {
         try {
