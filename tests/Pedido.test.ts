@@ -1,7 +1,9 @@
 import {Pedido} from "../src/Pedido";
+import {ProdutoBuilder} from "./utils/ProdutoBuilder";
 
 describe("Classe Pedido", ()=>{
     const id = 1
+    const estoque = 10
     describe("Ao criar pedido",()=>{
         test("Deve criar um pedido válido", () => {
             const pedido = new Pedido(id)
@@ -13,7 +15,15 @@ describe("Classe Pedido", ()=>{
         })
     });
     describe("Ao adicionar produtos ao pedido",()=>{
-        test.todo("Deve adicionar um produto vÃ¡lido ao pedido")
+        test("Deve adicionar um produto válido ao pedido", () => {
+            const produto = new ProdutoBuilder().padrao().comEstoque(estoque).build()
+            const pedido = new Pedido(id)
+            const quantidade = 2
+            pedido.adicionarProduto(produto, quantidade)
+
+            expect(pedido.produtos).toEqual([{produto, quantidade}])
+        })
+
         test.todo("Deve lanÃ§ar um erro ao adicionar um produto com estoque insuficiente")
         test.todo("Deve reduzir o estoque do pedido")
         test.todo("Deve lanÃ§ar um erro ao tentar adicionar produto em um pedido finalizado")
