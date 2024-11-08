@@ -83,7 +83,15 @@ describe("Classe Pedido", ()=>{
             expect(result).not.toThrow()
         })
 
-        test.todo("Deve atualizar o estoque do produto ao deletar produto do pedido")
+        test("Deve atualizar o estoque do produto ao remover produto do pedido", () => {
+            const estoque = 5
+            const qtde = 2
+            const p = new ProdutoBuilder().padrao().comEstoque(estoque).build()
+            pedido.adicionarProduto(p, qtde)
+            pedido.removerProduto(p, qtde)
+            expect(p.estoque).toEqual(estoque)
+        })
+
         test.todo("Deve atualizar o estoque do produto ao deletar uma quantidade mais de produto do pedido")
         test.todo("Deve deletar apenas a quantidade indicada")
         test.todo("Deve lanÃ§ar um erro ao tentar remover produto em um pedido finalizado")
