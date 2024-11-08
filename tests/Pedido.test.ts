@@ -100,7 +100,15 @@ describe("Classe Pedido", ()=>{
             pedido.removerProduto(p, qtde + 1)
             expect(p.estoque).toEqual(estoque)
         })
-        test.todo("Deve deletar apenas a quantidade indicada")
+
+        test("Deve remover apenas a quantidade indicada", () => {
+            const estoque = 5
+            const qtde = 2
+            const p = new ProdutoBuilder().padrao().comEstoque(estoque).build()
+            pedido.adicionarProduto(p, qtde)
+            pedido.removerProduto(p, qtde)
+            expect(p.estoque).toEqual(estoque)
+        })
         test.todo("Deve lanÃ§ar um erro ao tentar remover produto em um pedido finalizado")
     });
 
