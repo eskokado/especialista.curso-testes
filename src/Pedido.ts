@@ -19,6 +19,7 @@ export class Pedido {
     }
 
     removerProduto(produto: Produto, quantidade: number): void {
+        if (this.finalizado) throw new Error('Pedido já finalizado!')
         const produtoPedido = this.produtos.find((p) => p.produto === produto);
         if (!produtoPedido) {
             return;

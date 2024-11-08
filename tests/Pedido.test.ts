@@ -109,7 +109,16 @@ describe("Classe Pedido", ()=>{
             pedido.removerProduto(p, qtde)
             expect(p.estoque).toEqual(estoque)
         })
-        test.todo("Deve lanÃ§ar um erro ao tentar remover produto em um pedido finalizado")
+
+        test("Deve lançar um erro ao tentar remover produto em um pedido finalizado", () => {
+            const estoque = 5
+            const qtde = 2
+            const p = new ProdutoBuilder().padrao().comEstoque(estoque).build()
+            pedido.finalizarPedido()
+            const result = () => pedido.removerProduto(p, qtde)
+            expect(result).toThrow('Pedido já finalizado!')
+
+        })
     });
 
     describe("Ao exibir o valor total",()=>{
