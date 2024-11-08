@@ -54,8 +54,20 @@ describe("Classe Pedido", ()=>{
         })
     });
 
-    describe("Ao deletar produtos do pedido",()=>{
-        test.todo("Deve deletar um produto vÃ¡lido")
+    describe("Ao executar remover produtos do pedido",()=>{
+        let pedido: Pedido
+        beforeEach(() => {
+            pedido = new Pedido(id)
+        })
+
+        test("Deve deletar um produto válido", () => {
+            const qtde = 5
+            const p = new ProdutoBuilder().padrao().comEstoque(qtde).build()
+            pedido.adicionarProduto(p, qtde)
+            pedido.removerProduto(p, qtde)
+            expect(pedido.produtos).toEqual([])
+        })
+
         test.todo("Deve retirar o produto do carrinho se tentar deletar uma quantidade maior do que o adicionado")
         test.todo("NÃ£o deve gerar erros ao tentar deletar um produto que nÃ£o esteja no pedido")
         test.todo("Deve atualizar o estoque do produto ao deletar produto do pedido")

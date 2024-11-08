@@ -18,7 +18,7 @@ export class Pedido {
         this.produtos.push({ produto, quantidade });
     }
 
-    deletarProduto(produto: Produto, quantidade: number): void {
+    removerProduto(produto: Produto, quantidade: number): void {
         const produtoPedido = this.produtos.find((p) => p.produto === produto);
         if (!produtoPedido) {
             return;
