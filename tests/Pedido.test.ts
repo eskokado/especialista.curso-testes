@@ -168,7 +168,14 @@ describe("Classe Pedido", ()=>{
             expect(result).toThrow("Pedido finalizado não pode ser alterado")
         })
 
-        test.todo("NÃ£o deve causar nenhum problema ao tentar finalizar um teste jÃ¡ finalizado")
+        test("Não deve causar nenhum problema ao tentar finalizar um teste já¡ finalizado", () => {
+            const p1 = new ProdutoBuilder().padrao().comEstoque(5).build()
+            const qtde = 2
+            pedido.adicionarProduto(p1, qtde)
+            pedido.finalizarPedido()
+            const result = () => pedido.finalizado = true
+            expect(result).not.toThrow()
+        })
     });
 
     describe("Ao exibir o resumo", ()=>{
