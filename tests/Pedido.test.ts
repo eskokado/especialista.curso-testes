@@ -133,7 +133,10 @@ describe("Classe Pedido", ()=>{
             expect(pedido.total).toBe(total)
         })
 
-        test.todo("Deve exibir o valor total do pedido quanto o pedido nÃ£o tiver nenhum item")
+        test("Deve exibir o valor total do pedido quanto o pedido não tiver nenhum item", () => {
+            const pedido = new Pedido(id)
+            expect(pedido.total).toBe(0)
+        })
     })
 
     describe("Ao finalizar o pedido", ()=>{
