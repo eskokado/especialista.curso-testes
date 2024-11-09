@@ -2,10 +2,19 @@ import { Produto } from "./Produto";
 
 export class Pedido {
     public produtos: { produto: Produto; quantidade: number }[] = [];
-    public finalizado: boolean = false;
+    private _finalizado: boolean = false;
 
     constructor(public id: number) {
         if (id <= 0) throw new Error("O id deve ser maior que 0")
+    }
+
+    get finalizado() {
+        return this._finalizado
+    }
+
+    set finalizado(finalizado: boolean) {
+        if(this._finalizado && !finalizado) throw new Error("Pedido finalizado não pode ser alterado")
+        this._finalizado = finalizado
     }
 
     adicionarProduto(produto: Produto, quantidade: number): void {

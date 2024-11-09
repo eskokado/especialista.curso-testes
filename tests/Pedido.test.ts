@@ -159,7 +159,15 @@ describe("Classe Pedido", ()=>{
             expect(result).toThrow("Pedido sem produto não pode ser finalizado!")
         })
 
-        test.todo("NÃ£o deve permitir que um pedido finalizado volte a ficar nÃ£o finalizado")
+        test("Não deve permitir que um pedido finalizado volte a ficar não finalizado", () => {
+            const p1 = new ProdutoBuilder().padrao().comEstoque(5).build()
+            const qtde = 2
+            pedido.adicionarProduto(p1, qtde)
+            pedido.finalizarPedido()
+            const result = () => pedido.finalizado = false
+            expect(result).toThrow("Pedido finalizado não pode ser alterado")
+        })
+
         test.todo("NÃ£o deve causar nenhum problema ao tentar finalizar um teste jÃ¡ finalizado")
     });
 
