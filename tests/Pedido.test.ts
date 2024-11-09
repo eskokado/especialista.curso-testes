@@ -153,7 +153,12 @@ describe("Classe Pedido", ()=>{
             pedido.finalizarPedido()
             expect(pedido.finalizado).toBeTruthy()
         })
-        test.todo("Deve lanÃ§ar um erro ao tentar finalizar um pedido sem produtos")
+
+        test("Deve lançar um erro ao tentar finalizar um pedido sem produtos", () => {
+            const result = () => pedido.finalizarPedido()
+            expect(result).toThrow("Pedido sem produto não pode ser finalizado!")
+        })
+
         test.todo("NÃ£o deve permitir que um pedido finalizado volte a ficar nÃ£o finalizado")
         test.todo("NÃ£o deve causar nenhum problema ao tentar finalizar um teste jÃ¡ finalizado")
     });

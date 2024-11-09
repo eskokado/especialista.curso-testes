@@ -35,6 +35,7 @@ export class Pedido {
     }
 
     finalizarPedido(): void {
+        if(this.produtos.length === 0) throw new Error("Pedido sem produto não pode ser finalizado!")
         this.finalizado = true;
     }
 
