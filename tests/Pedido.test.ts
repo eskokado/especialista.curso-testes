@@ -122,7 +122,17 @@ describe("Classe Pedido", ()=>{
     });
 
     describe("Ao exibir o valor total",()=>{
-        test.todo("Deve exibir o valor total dos pedidos")
+        test("Deve exibir o valor total do pedido", () => {
+            const pedido = new Pedido(id)
+            const p1 = new ProdutoBuilder().padrao().comEstoque(5).build()
+            const p2 = new ProdutoBuilder().padrao().comEstoque(5).comDesconto(0.1).build()
+            const qtde = 2
+            pedido.adicionarProduto(p1, qtde)
+            pedido.adicionarProduto(p2, qtde)
+            const total = qtde*p1.precoAtual + qtde*p2.precoAtual
+            expect(pedido.total).toBe(total)
+        })
+
         test.todo("Deve exibir o valor total do pedido quanto o pedido nÃ£o tiver nenhum item")
     })
 
