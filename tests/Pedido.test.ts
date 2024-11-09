@@ -140,7 +140,19 @@ describe("Classe Pedido", ()=>{
     })
 
     describe("Ao finalizar o pedido", ()=>{
-        test.todo("Deve finalizar o pedido com produtos")
+        let pedido: Pedido
+
+        beforeEach(() => {
+            pedido = new Pedido(id)
+        })
+
+        test("Deve finalizar o pedido com produtos", () => {
+            const p1 = new ProdutoBuilder().padrao().comEstoque(5).build()
+            const qtde = 2
+            pedido.adicionarProduto(p1, qtde)
+            pedido.finalizarPedido()
+            expect(pedido.finalizado).toBeTruthy()
+        })
         test.todo("Deve lanÃ§ar um erro ao tentar finalizar um pedido sem produtos")
         test.todo("NÃ£o deve permitir que um pedido finalizado volte a ficar nÃ£o finalizado")
         test.todo("NÃ£o deve causar nenhum problema ao tentar finalizar um teste jÃ¡ finalizado")
