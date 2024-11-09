@@ -46,6 +46,7 @@ describe("Classe Pedido", ()=>{
             const produto = new ProdutoBuilder().padrao().comEstoque(estoque).build()
             const pedido = new Pedido(id)
             const quantidade = 5
+            pedido.adicionarProduto(produto, quantidade)
             pedido.finalizarPedido()
             const criação = () => pedido.adicionarProduto(produto, quantidade)
 
@@ -114,6 +115,7 @@ describe("Classe Pedido", ()=>{
             const estoque = 5
             const qtde = 2
             const p = new ProdutoBuilder().padrao().comEstoque(estoque).build()
+            pedido.adicionarProduto(p, qtde)
             pedido.finalizarPedido()
             const result = () => pedido.removerProduto(p, qtde)
             expect(result).toThrow('Pedido já finalizado!')
