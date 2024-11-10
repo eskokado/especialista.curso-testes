@@ -60,14 +60,11 @@ export class Pedido {
             .map(
                 (p) =>
                     `${p.produto.getDescricao()}, Quantidade: ${
-                        p.quantidade > 0 ? p.quantidade : "nÃ£o encontrada"
+                        p.quantidade > 0 ? p.quantidade : "não encontrada"
                     }`
             )
             .join("\n");
 
-        return `Pedido ID: ${this.id}\nProdutos:\n${
-            this.produtos.length > 0 ? produtosDescritos : "Nenhum produto encontrado"
-        }\nTotal: R$${this.total.toFixed(2) ?? 0}
-			\nFinalizado: ${this.finalizado ? "Sim" : "NÃ£o"}`;
+        return `Pedido ID: ${this.id}\nProdutos:\n${this.produtos.length > 0 ? produtosDescritos : "Nenhum produto encontrado"}\nTotal: R$${this.total.toFixed(2) ?? 0}\nFinalizado: ${this.finalizado ? "Sim" : "Não"}`;
     }
 }

@@ -181,8 +181,35 @@ describe("Classe Pedido", ()=>{
     });
 
     describe("Ao exibir o resumo", ()=>{
-        test.todo("Deve exibir o resumo de um pedido finalizado")
-        test.todo("Deve exibir o resumo de um pedido em andamento")
-        test.todo("Deve exibir o resumo de um pedido em andamento com o carrinho vazio")
+        let pedido: Pedido
+
+        beforeEach(() => {
+            pedido = new Pedido(id)
+        }) 
+
+        test("Deve exibir o resumo de um pedido finalizado", () => {
+            const p = new ProdutoBuilder().padrao().comEstoque(5).build()
+            const qtde = 1
+            pedido.adicionarProduto(p, qtde)
+            pedido.finalizarPedido()
+            const resumo = pedido.getResumo()
+            expect(resumo).toBe(
+                `Pedido ID: ${id}\nProdutos:\n${p.getDescricao()}, Quantidade: ${qtde}\nTotal: R$${pedido.total.toFixed(2)}\nFinalizado: Sim`)    
+        })
+
+        test("Deve exibir o resumo de um pedido em andamento", () => {
+            const p = new ProdutoBuilder().padrao().comEstoque(5).build()
+            const qtde = 1
+            pedido.adicionarProduto(p, qtde)
+            const resumo = pedido.getResumo()
+            expect(resumo).toBe(
+                `Pedido ID: ${id}\nProdutos:\n${p.getDescricao()}, Quantidade: ${qtde}\nTotal: R$${pedido.total.toFixed(2)}\nFinalizado: Não`)    
+        })
+
+        test("Deve exibir o resumo de um pedido em andamento com o carrinho vazio", () => {
+            const resumo = pedido.getResumo()
+            expect(resumo).toBe(
+                `Pedido ID: ${id}\nProdutos:\nNenhum produto encontrado\nTotal: R$0.00\nFinalizado: Não`)    
+        })
     });
 });
